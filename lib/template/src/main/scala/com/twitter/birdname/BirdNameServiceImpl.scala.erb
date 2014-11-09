@@ -6,8 +6,8 @@ import scala.collection.mutable
 
 import config._
 
-class BirdnameServiceImpl(config: BirdnameServiceConfig) extends BirdnameServiceServer {
-  val serverName = "Birdname"
+class BirdNameServiceImpl(config: BirdNameServiceConfig) extends BirdNameServiceServer {
+  val serverName = "BirdName"
   val thriftPort = config.thriftPort
 
   /**
@@ -30,7 +30,7 @@ class BirdnameServiceImpl(config: BirdnameServiceConfig) extends BirdnameService
     database.get(key) match {
       case None =>
         //log.debug("get %s: miss", key)
-        Future.exception(BirdnameException("No such key"))
+        Future.exception(BirdNameException("No such key"))
       case Some(value) =>
         //log.debug("get %s: hit", key)
         Future(value)
@@ -43,4 +43,7 @@ class BirdnameServiceImpl(config: BirdnameServiceConfig) extends BirdnameService
     Future.Unit
   }
 
+  def shutdown() = {
+    super.shutdown(0.seconds)
+  }
 }
