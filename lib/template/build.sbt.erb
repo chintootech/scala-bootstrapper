@@ -1,6 +1,3 @@
-import com.twitter.sbt._
-import com.twitter.scalatest._
-
 scalaVersion := "2.10.4"
 
 organization := "com.twitter"
@@ -10,21 +7,17 @@ name := "birdname"
 com.twitter.scrooge.ScroogeSBT.newSettings
 
 libraryDependencies ++= Seq(
-  "org.scala-lang" % "jline"                  % "2.10.0-M2",
-  "com.twitter"    %% "twitter-server"        % "1.8.0",
-  "com.twitter"    %% "scrooge-core"          % "3.16.3",
-  "com.twitter"    %% "finagle-core"          % "6.22.0",
-  "com.twitter"    %% "finagle-thrift"        % "6.22.0",
-  "com.twitter"    %% "finagle-stats"         % "6.22.0",
-  "com.twitter"    %% "util-jvm"              % "6.22.0"
-//  "org.scalatest" %% "scalatest"             % "1.7.1" % "test",
-//  "com.twitter"   %% "scalatest-mixins"      % "1.1.0" % "test"
+   "org.scala-lang" % "jline"                  % "2.10.0-M2",
+   "com.twitter"    %% "twitter-server"        % "1.8.0",
+   "com.twitter"    %% "scrooge-core"          % "3.16.3",
+   "com.twitter"    %% "scrooge-ostrich"       % "3.16.3",
+   "com.twitter"    %% "finagle-core"          % "6.22.0",
+   "com.twitter"    %% "finagle-thrift"        % "6.22.0",
+   "com.twitter"    %% "finagle-ostrich4"       % "6.22.0"
+   //  "org.scalatest" %% "scalatest"             % "1.7.1" % "test",
+   //  "com.twitter"   %% "scalatest-mixins"      % "1.1.0" % "test"
 )
 
 
 resolvers += "twitter" at "http://maven.twttr.com"
-
-mainClass in (Compile, run) := Some("com.twitter.birdname.Main")
-
-mainClass in (Compile, packageBin) := Some("com.twitter.birdname.Main")
 

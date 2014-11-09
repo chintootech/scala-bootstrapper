@@ -3,6 +3,7 @@ package com.twitter.birdname
 import com.twitter.logging.Logger
 import com.twitter.util._
 import scala.collection.mutable
+import com.twitter.util.TimeConversions._
 
 import config._
 
@@ -43,7 +44,7 @@ class BirdNameServiceImpl(config: BirdNameServiceConfig) extends BirdNameService
     Future.Unit
   }
 
-  def shutdown() = {
+  override def shutdown() = {
     super.shutdown(0.seconds)
   }
 }

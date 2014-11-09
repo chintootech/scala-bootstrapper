@@ -6,9 +6,9 @@ import com.twitter.ostrich.admin.{RuntimeEnvironment}
 import com.twitter.ostrich.admin.config._
 import com.twitter.scrooge.OstrichThriftServer
 
-class BirdnameServiceConfig extends ServerConfig[OstrichThriftServer] {
+class BirdNameServiceConfig extends ServerConfig[OstrichThriftServer] {
   var thriftPort: Int = 9999
   var tracerFactory: Tracer.Factory = NullTracer.factory
 
-  def apply(runtime: RuntimeEnvironment) = new BirdnameServiceImpl(this)
+  def apply(runtime: RuntimeEnvironment) = new BirdNameServiceImpl(this)
 }
