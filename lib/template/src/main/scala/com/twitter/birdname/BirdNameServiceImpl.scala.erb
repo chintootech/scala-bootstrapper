@@ -1,16 +1,14 @@
 package com.twitter.birdname
 
-import com.twitter.conversions.time._
 import com.twitter.logging.Logger
 import com.twitter.util._
-import java.util.concurrent.Executors
 import scala.collection.mutable
+
 import config._
 
-class BirdNameServiceImpl(config: BirdNameServiceConfig) extends BirdNameService.ThriftServer {
-  val serverName = "BirdName"
+class BirdnameServiceImpl(config: BirdnameServiceConfig) extends BirdnameServiceServer {
+  val serverName = "Birdname"
   val thriftPort = config.thriftPort
-  override val tracerFactory = config.tracerFactory
 
   /**
    * These services are based on finagle, which implements a nonblocking server.  If you
@@ -31,21 +29,18 @@ class BirdNameServiceImpl(config: BirdNameServiceConfig) extends BirdNameService
   def get(key: String) = {
     database.get(key) match {
       case None =>
-        log.debug("get %s: miss", key)
-        Future.exception(BirdNameException("No such key"))
+        //log.debug("get %s: miss", key)
+        Future.exception(BirdnameException("No such key"))
       case Some(value) =>
-        log.debug("get %s: hit", key)
+        //log.debug("get %s: hit", key)
         Future(value)
     }
   }
 
   def put(key: String, value: String) = {
-    log.debug("put %s", key)
+    //log.debug("put %s", key)
     database(key) = value
     Future.Unit
   }
 
-  def shutdown() = {
-    super.shutdown(0.seconds)
-  }
 }
